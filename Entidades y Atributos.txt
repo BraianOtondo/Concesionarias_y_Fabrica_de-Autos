@@ -1,0 +1,16 @@
+ENTIDADES:
+Automoviles(patente,modelo)
+AutomovilEstaciondeTrabajo(fechaIngreso*,fechaEgreso)
+Linea de montaje(promedio,nombre,id)
+
+EstacionDeTrabajo(idTarea,idLineaMontaje,tiemopodeproducccion)
+Empresa(nombre,id)
+Concecionarias(nombre,idEmpresa)
+ConcecionariaTieneAutomovil()
+VentaTieneAutomovil(cantidad,idVenta,idAutomovil)
+Venta(id,fechadeventa)
+AUtopartes(nombre,precio,id,idEmpresaDestino,idEmpresaOrigen,)
+Proveedores(nombre,id,)
+Tarea(id,descripcion,tipo,precio)
+PedidoTieneAutopartes(cantidad,idAutoparte,idPedido);
+Pedido(idEmpresa,idProveedor)
