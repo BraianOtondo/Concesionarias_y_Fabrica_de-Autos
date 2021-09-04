@@ -9,7 +9,7 @@ Concecionarias(nombre,idEmpresa)
 ConcecionariaTieneAutomovil()
 VentaTieneAutomovil(cantidad,idVenta,idAutomovil)
 Venta(id,fechadeventa)
-AUtopartes(nombre,precio,id,idEmpresaDestino,idEmpresaOrigen,)
+AUtopartes(nombre,precio,id,idEmpresaDestino,idEmpresaOrigen,)//Insumo
 Proveedores(nombre,id,)
 Tarea(id,descripcion,tipo,precio)
 PedidoTieneAutopartes(cantidad,idAutoparte,idPedido);
