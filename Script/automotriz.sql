@@ -15,9 +15,9 @@ DROP SCHEMA IF EXISTS `automotriz` ;
 -- -----------------------------------------------------
 -- Schema automotriz
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `automotriz` DEFAULT CHARACTER SET utf8 ;
-USE `automotriz` ;
-
+CREATE SCHEMA IF NOT EXISTS automotriz DEFAULT CHARACTER SET utf8 ;
+USE automotriz ;
+select schema();
 -- -----------------------------------------------------
 -- Table `automotriz`.`insumo`
 -- -----------------------------------------------------
@@ -252,12 +252,8 @@ CREATE TABLE IF NOT EXISTS `automotriz`.`insumo_has_proveedor` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 CREATE INDEX `fk_insumo_has_proveedor_proveedor1_idx` ON `automotriz`.`insumo_has_proveedor` (`proveedor_id_proveedor` ASC) VISIBLE;
-
 CREATE INDEX `fk_insumo_has_proveedor_insumo1_idx` ON `automotriz`.`insumo_has_proveedor` (`insumo_id_insumo` ASC) VISIBLE;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
