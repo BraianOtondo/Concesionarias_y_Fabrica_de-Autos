@@ -66,3 +66,19 @@ call eliminarConcecionaria(1,@mensaje);
 select @mensaje;
 call modificarConcensionaria(1,4,"TodoAutos Luis Guillon",@mensaje);
 select @mensaje;
+-- (in _id_pedido int,in _id_modelo int,in _cuit_concesionaria int,in _cantidad int,out mensaje varchar(50))
+insert into modelo values(27,"FORD RANGER");
+insert into modelo values(77,"KANGOO");
+select*from modelo;
+call agregarPedido(6,27,1,2,@mensaje);
+select @mensaje;
+select *from pedido;
+select*from detalle_pedido;
+call agregarPedido(1,77,1,6,@mensaje);
+select @mensaje;
+-- CREATE PROCEDURE eliminarPedido(in _id_pedido int, out mensaje varchar(70))
+call eliminarPedido(43,@mensaje);
+select @mensaje;
+-- CREATE PROCEDURE modificarPedido(in _id_pedido int,in _id_modelo int, in nueva_cantidad int, in nuevo_id_modelo int, out mensaje varchar(70))
+call modificarPedido(2,27,10,77,@mensaje);
+select @mensaje;
