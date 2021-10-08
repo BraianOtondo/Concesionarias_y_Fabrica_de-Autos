@@ -62,6 +62,8 @@ DELIMITER ;
 select *from concesionaria;
 call agregarConcesionaria(1,"TodoAutos Temperley",@mensaje);
 select @mensaje;
+call agregarConcesionaria(3,"TODOAUTOS MONTE",@mensaje);
+select @mensaje;
 call eliminarConcecionaria(1,@mensaje);
 select @mensaje;
 call modificarConcensionaria(1,4,"TodoAutos Luis Guillon",@mensaje);
@@ -75,10 +77,11 @@ select @mensaje;
 select *from pedido;
 select*from detalle_pedido;
 call agregarPedido(1,77,1,6,@mensaje);
+
 select @mensaje;
 -- CREATE PROCEDURE eliminarPedido(in _id_pedido int, out mensaje varchar(70))
 call eliminarPedido(43,@mensaje);
 select @mensaje;
 -- CREATE PROCEDURE modificarPedido(in _id_pedido int,in _id_modelo int, in nueva_cantidad int, in nuevo_id_modelo int, out mensaje varchar(70))
-call modificarPedido(2,27,10,77,@mensaje);
+call modificarPedido(6,27,10,77,@mensaje);
 select @mensaje;
