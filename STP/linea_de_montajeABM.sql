@@ -1,5 +1,5 @@
 DELIMITER $$
-create procedure agregarLinea(in _id_linea int, in _capacidad int, in _id_modelo int, out mensaje varchar(70),out resultado int)begin
+create procedure agregarLineaDeMontaje(in _id_linea int, in _capacidad int, in _id_modelo int, out mensaje varchar(70),out resultado int)begin
 declare cantidadRepetida int default 0;
 select count(*) into cantidadRepetida from linea_de_montaje where id_linea= _id_linea;
 select 0 into resultado;

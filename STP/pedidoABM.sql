@@ -1,20 +1,21 @@
 USE automotriz ;
 /*ALTA*/
 DELIMITER $$
-create procedure agregarPedido(in _id_pedido int,in _id_modelo int,in _cuit_concesionaria int,in _cantidad int,in _precio decimal,out mensaje varchar(70),out resultado int) begin
+create procedure agregarPedido(in _id_pedido int,in _id_modelo int,in _cuit_concesionaria int,in _cantidad int,out mensaje varchar(70),out resultado int) begin
 declare cantidadRepetida int default 0;
 select count(*) into cantidadRepetida from pedido where id_pedido=_id_pedido;
-select 0 into resultado;
 if(cantidadRepetida>0)then
-	select "Se agrego el detalle_pedido en el pedido correctamente" into mensaje; -- si ya existe el pedido solo agrega
-    call generarAutomoviles(_id_modelo,_id_pedido,_cantidad,_precio);
-    select 1 into resultado;
-
     insert into detalle_pedido values(_id_modelo,_id_pedido,_cantidad);
+	select "Se agrego el detalle_pedido en el pedido correctamente" into mensaje; -- si ya existe el pedido solo agrega
+    call generarAutomoviles(_id_modelo,_id_pedido,_cantidad);
+    select 1 into resultado;
 else
 	select "Se creó el pedido y se agregó el detalle_pedido correctamente" into mensaje; -- si no existe, lo crea y luego lo agrega
     insert into pedido values(_id_pedido,_cuit_concesionaria);
 	insert into detalle_pedido values(_id_modelo,_id_pedido,_cantidad);
+        call generarAutomoviles(_id_modelo,_id_pedido,_cantidad);
+    select 0 into resultado;
+
 end if;
 end$$
 DELIMITER ;
