@@ -1,6 +1,7 @@
 USE automotriz ;
 /*ALTA*/
 DELIMITER $$
+-- recibe la cantidad, id pedido, y el id de modelo para crearlo
 create procedure agregarPedido(in _id_pedido int,in _id_modelo int,in _cuit_concesionaria int,in _cantidad int,out mensaje varchar(70),out resultado int) begin
 declare cantidadRepetida int default 0;
 select count(*) into cantidadRepetida from pedido where id_pedido=_id_pedido;

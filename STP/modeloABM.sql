@@ -60,3 +60,4 @@ CREATE PROCEDURE modificarModelo(in _id_modelo int, in nuevo_id_modelo int, in n
     end if;
 END$$
 DELIMITER ;
+

@@ -1,62 +1,51 @@
 -- SEGUNDA ETAPA
 -- 5)
--- Concesionaria
--- Alta
 select *from concesionaria;
-call agregarConcesionaria(1,"TodoAutos Ezeiza",@mensaje,@resultado);
-call agregarConcesionaria(2,"TodoAutos Lanús",@mensaje,@resultado);
-select @mensaje;
-select @resultado;
--- Baja
-call eliminarConcesionaria(2,@mensaje,@resultado);
-select @mensaje;
-select @resultado;
--- Modificación
-call modificarConcensionaria(1,7,"TodoAutos Temperley",@mensaje,@resultado);
-select @mensaje;
-select @resultado;
--- Modelo
 select *from modelo;
 select *from linea_de_montaje;
--- Alta
-call agregarModelo(10,"Ford AKA",1000,@mensaje,@resultado);
-select @mensaje;
-select @resultado;
-call agregarModelo(7,"Ford Zeus",2000,@mensaje,@resultado);
-call agregarModelo(2,"Ford Raptor",100,@mensaje,@resultado);
-call agregarLineaDeMontaje(1,0,7,@mensaje,@resultado);
--- Baja
-call eliminarModelo(7,@mensaje,@resultado);
-select @mensaje;
-select @resultado;
--- Modificación
-call modificarModelo(10,4,"Ford Fox",100,@mensaje,@resultado);
-
--- Pedidos
--- Alta
-call agregarPedido(2,2,7,2,@mensaje,@resultado);
--- (in _id_pedido int,in _id_modelo int,in _cuit_concesionaria int,in _cantidad int,out mensaje varchar(70),out resultado int)
-select @mensaje;
-select @resultado;
+select *from automovil;
 select*from pedido;
 select*from detalle_pedido;
 select*from automovil;
-select @mensaje;
-call eliminarPedido(2,@mensaje,@resultado);
-select @mensaje;
-select @resultado;
--- Proveedor
--- Alta
-select *from proveedor;
-call agregarProveedor(1,"LimpiezaDot","42630323","pepetoño87@gmail.com",@mensaje,@resultado);
--- Baja
-call eliminarProveedor(1,@mensaje,@resultado);
-call agregarEstacion(1,@mensaje,@resultado);
-call agregarEstacion(2,@mensaje,@resultado);
-
-select @mensaje;
-select @resultado;
-select *from estacion;
-call iniciarMontaje(1151,'2014-10-25 20:00:00',@mensaje,@resultado);
 select*from estacion_has_automovil;
-select id_estacion from estacion e inner join linea_de_montaje li on e.linea_de_montaje_id_linea=li.id_linea where li.id_linea=2;
+select*from estacion;
+-- Concesionaria
+-- Alta
+call agregarConcesionaria(1,"TodoAutos Ezeiza",@mensaje,@resultado);  -- LISTO
+select @mensaje;
+select @resultado;
+call agregarConcesionaria(2,"TodoAutos MonteGrande",@mensaje,@resultado);
+-- Baja
+call eliminarConcesionaria(2,@mensaje,@resultado);
+call agregarConcesionaria(2,"TodoAutos MonteGrande",@mensaje,@resultado);
+select @mensaje;
+select @resultado;
+-- Modificar 
+call modificarConcensionaria(2,3, "TodoAutos Canning",@mensaje,@resultad);
+select @mensaje;
+call eliminarConcesionaria(3,@mensaje,@resultado);
+
+-- Alta 
+call agregarModelo(10,"Ford AKA",1000,@mensaje,@resultado); -- LISTO
+select @mensaje; -- El AgregarModelo crea una Linea de Montaje Con el ID actual +1 agregandole el modelo tambien como foranea
+select @resultado;
+-- TERCERA ETAPA 
+-- 8)  
+-- Alta 
+call agregarPedido(2,10,1,2,@mensaje,@resultado); -- AgregarPedido crea el pedido y atravez del modelo y la cantidad tambien 
+select @mensaje;								-- crea los automoviles agregandole la Linea asignada y nro de patente aleatorio
+select @resultado;								-- usa el Procedimiento  generarAutomoviles(in _id_modelo int,in id_pedido int, in _cantidad int)
+												-- usando el modelo por parametro y el id pedido 
+-- (in _id_pedido int,in _id_modelo int,in _cuit_concesionaria int,in _cantidad int,out mensaje varchar(70),out resultado int)
+select @mensaje;
+select @resultado;
+--  Crea la Estacion y tambien determina si va ser la primera Estacion o no, atravez de un booleano
+ call agregarEstacion(10,1,@mensaje ,@resultado);
+ select @mensaje;
+select @resultado;
+call iniciarMontaje(3032,'2021-01-01 00:00:00',@mensaje,@resultado);
+select @mensaje;
+select @resultado;
+call continuarMontaje(3032,@Mensaje, @Resultado);
+select @Mensaje;
+select @Resultado;

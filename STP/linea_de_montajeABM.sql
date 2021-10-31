@@ -57,3 +57,20 @@ declare cantidadRepetida int default 0;
     end if;
 end$$
 DELIMITER ;
+DELIMITER $$
+CREATE FUNCTION traerUltimoIdLinea() RETURNS int DETERMINISTIC begin
+declare cant int;
+select cantLinea() into cant;
+if(cant<>0)then
+SELECT MAX(id_linea) AS id FROM linea_de_montaje into cant;
+end if;
+return cant;
+end $$
+DELIMITER ;
+DELIMITER $$
+create function cantLinea()returns int deterministic begin
+declare cant int default 0;
+select count(*) into cant from linea_de_montaje;
+return cant;
+end $$
+DELIMITER ;
